@@ -15,7 +15,7 @@ const Header = ({onSearch}) => {
   return (
     <div className='p-4 bg-black flex items-center justify-between opacity-75'>
       <div className='flex items-center space-x-4'>
-        <h1 className='text-[30px] uppercase font-bold text-blue-400'>Netflex</h1>
+        <h1 className='text-[30px] uppercase font-bold text-blue-400'>Nextflex</h1>
         <nav className='flex items-center space-x-4'>
           <a href="#" className='text-white'>Trang chủ</a>
           <a href="#" className='text-white'>Giới thiệu</a>
