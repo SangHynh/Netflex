@@ -1,16 +1,27 @@
-import { useState } from 'react'
-import Header from './components/Header'
-import Banner from './components/Banner'
+import { useState, useEffect } from "react";
+import Header from "./components/Header";
+import Banner from "./components/Banner";
+import MovieList from "./components/MovieList";
+import { fetchMovies } from "./api/CallAPI";
 
 
 function App() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   return (
     <>
-      <Header/>     
-      <Banner/>   
+      <div className="bg-black">
+        <Header />
+        <Banner />
+        <MovieList title={"Phim Hot"} />
+        <MovieList title={"Phim Đề Cử"} />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
