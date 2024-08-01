@@ -1,6 +1,6 @@
-import { configs } from "./Configs";
+import { configs } from "./configs";
 
-const url = 'https://api.themoviedb.org/3/authentication'
+const url = 'https://api.themoviedb.org/3/movie/popular?language=vi&page=1'
 
 
 const fetchMovies = async () => {

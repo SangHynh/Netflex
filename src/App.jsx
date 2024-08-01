@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Banner from "./components/Banner";
 import MovieList from "./components/MovieList";
-import { fetchMovies } from "./api/CallAPI";
+import { fetchMovies } from "./api/apiServices";
 
 
 function App() {
