@@ -1,35 +1,11 @@
 import React, { useState } from "react";
-import ImgTemp from "../assets/temp-1.jpeg";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import Modal from "react-modal";
 import YouTube from "react-youtube";
 import { fetchMovieTrailer } from "../api/apiServices";
 
-const MovieList = ({ title, data }) => {
+const MovieSearch = ({ title, data }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [trailerKey, setTrailerKey] = useState("");
-
-  /* Responsive from carousel lib */
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 10,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 7,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
-    },
-  };
 
   /* configs for react youtube video */
   const opts = {
@@ -50,12 +26,16 @@ const MovieList = ({ title, data }) => {
       .catch((err) => console.log(err));
   };
 
+
   /* render item films  */
   const renderItem = (data) => {
     return data.map((item) => (
       <div
         key={item.id}
-        onClick={() => handleTrailer(item.id)}
+        onClick={() => {
+          console.log(item.id)
+          handleTrailer(item.id)
+        }}
         className="w-[200px] h-[300px] relative group"
       >
         {/* mask item */}
@@ -79,13 +59,12 @@ const MovieList = ({ title, data }) => {
 
   return (
     <div className="text-white p-10 mb-10">
-      {/* title */}
       <h2 className="uppercase text-xl my-4">{title}</h2>
-      {/* list film */}
-      <Carousel responsive={responsive} className="items-center space-x-4">
-        {/* item film */}
-        {data && renderItem(data)}
-      </Carousel>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 ">
+      {data && data.length >0 && renderItem(data)}
+
+      </div>
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -114,4 +93,4 @@ const MovieList = ({ title, data }) => {
   );
 };
 
-export default MovieList;
+export default MovieSearch;

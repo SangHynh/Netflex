@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Banner from "./components/Banner";
 import MovieList from "./components/MovieList";
-import { fetchMovies, fetchMoviesRate } from "./api/apiServices";
+import MovieSearch from "./components/MovieSearch";
+import {
+  fetchMovies,
+  fetchMoviesRate,
+  fetchSearchMovies,
+} from "./api/apiServices";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [moviesRate, setMoviesRate] = useState([]);
+  const [moviesSearch, setMoviesSearch] = useState([]);
 
   useEffect(() => {
     fetchMovies().then((res) => {
@@ -17,13 +23,25 @@ function App() {
     });
   }, []);
 
+  const handleSearch = async (searchValue) => {
+    fetchSearchMovies(searchValue).then((res)=>{
+      setMoviesSearch(res.results)
+    }).catch((err)=>console.log(err))
+  };
+
   return (
     <>
       <div className="bg-black">
-        <Header />
+        <Header onSearch={handleSearch} />
         <Banner />
-        <MovieList title={"Phim Hot"} data={movies}/>
-        <MovieList title={"Phim Đề Cử"} data={moviesRate}/>
+        {moviesSearch.length > 0 ? (
+          <MovieSearch title={"Kết quả tìm kiếm"} data={moviesSearch}/>
+        ) : (
+          <>
+            <MovieList title={"Phim Hot"} data={movies} />
+            <MovieList title={"Phim Đề Cử"} data={moviesRate} />
+          </>
+        )}
       </div>
     </>
   );
