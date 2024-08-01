@@ -1,4 +1,4 @@
-import { configs } from "./configs";
+import { configs } from "./apiConfigs";
 
 const url1 = "https://api.themoviedb.org/3/movie/popular?language=vi&page=1";
 const url2 = "https://api.themoviedb.org/3/movie/top_rated?language=vi&page=1";
