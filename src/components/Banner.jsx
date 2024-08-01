@@ -8,7 +8,7 @@ import IconPlay from "../assets/play-button.png";
 const Banner = () => {
   return (
     /* container */
-    <div className="w-full h-[70vh] bg-banner bg-center bg-no-repeat bg-cover relative">
+    <div className="w-full h-[90vh] bg-banner bg-center bg-no-repeat bg-cover relative">
       {/* mask */}
       <div className="absolute w-full h-full top-0 left-0 bg-black opacity-60" />
       {/* content */}

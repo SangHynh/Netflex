@@ -2,14 +2,19 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Banner from "./components/Banner";
 import MovieList from "./components/MovieList";
-import { fetchMovies } from "./api/apiServices";
-
+import { fetchMovies, fetchMoviesRate } from "./api/apiServices";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [moviesRate, setMoviesRate] = useState([]);
 
   useEffect(() => {
-    fetchMovies();
+    fetchMovies().then((res) => {
+      setMovies(res.results);
+    });
+    fetchMoviesRate().then((res) => {
+      setMoviesRate(res.results);
+    });
   }, []);
 
   return (
@@ -17,8 +22,8 @@ function App() {
       <div className="bg-black">
         <Header />
         <Banner />
-        <MovieList title={"Phim Hot"} />
-        <MovieList title={"Phim Đề Cử"} />
+        <MovieList title={"Phim Hot"} data={movies}/>
+        <MovieList title={"Phim Đề Cử"} data={moviesRate}/>
       </div>
     </>
   );
