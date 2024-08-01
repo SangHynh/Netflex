@@ -8,6 +8,7 @@ import {
   fetchMoviesRate,
   fetchSearchMovies,
 } from "./api/apiServices";
+import Footer from "./components/Footer";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-black">
+      <div className="bg-black/95">
         <Header onSearch={handleSearch} />
         <Banner />
         {moviesSearch.length > 0 ? (
@@ -42,6 +43,7 @@ function App() {
             <MovieList title={"Phim Đề Cử"} data={moviesRate} />
           </>
         )}
+        <Footer/>
       </div>
     </>
   );
